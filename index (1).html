@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Budget Planner</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container">
+  <header class="page-header"><div><p class="eyebrow">PERSONAL FINANCE</p><h1>Personal Budget Planner</h1><p class="subtitle">Plan your month, track your spending, and stay in control.</p></div>
+    <div class="header-actions"><span class="currency-badge">₹ INR</span><button id="theme-toggle" class="secondary-button" type="button">🌙 Dark mode</button><button id="logout-button" class="secondary-button hidden" type="button">Log out</button></div>
+  </header>
+  <section id="auth-panel" class="panel auth-panel"><p class="eyebrow">WELCOME</p><h2 id="auth-title">Sign in to your budget</h2><p class="muted">Create a demo account to keep your budget records separate in this browser.</p>
+    <form id="auth-form"><label for="auth-username">Username</label><input id="auth-username" type="text" minlength="3" maxlength="30" autocomplete="username" placeholder="Choose a username" required>
+      <label for="auth-password">Password</label><input id="auth-password" type="password" minlength="4" autocomplete="current-password" placeholder="Enter a password" required>
+      <button id="auth-submit" class="primary-button full-width" type="submit">Sign in</button><p id="auth-message" class="form-message" role="status"></p>
+      <p class="auth-switch"><span id="auth-switch-text">New here?</span> <button id="auth-switch" class="text-button" type="button">Create an account</button></p>
+      <p class="security-note">Classroom demo only: account details are stored in this browser and are not secure. Do not use a real or reused password.</p>
+    </form>
+  </section>
+  <div id="app-content" class="hidden">
+    <section class="panel budget-panel month-panel"><div><h2>Viewing Month</h2><p class="muted">The budget, totals, categories and history below are for this month.</p></div><input id="view-month" type="month" aria-label="Month to view" required></section>
+    <section class="panel budget-panel"><div><h2>Monthly Budget</h2><p class="muted">Set the amount you plan to spend in the selected month.</p><p id="budget-message" class="form-message" role="status"></p></div><form id="budget-form" class="budget-form"><label class="sr-only" for="monthly-budget">Monthly budget in rupees</label><span class="rupee">₹</span><input id="monthly-budget" type="number" min="0" step="0.01" placeholder="Enter budget" required><button type="submit">Save Budget</button></form></section>
+    <section class="summary-grid"><article class="summary-card"><p>Monthly Budget</p><h2 id="budget-total">₹0.00</h2><span>Planned spending limit</span></article><article class="summary-card income-card"><p>Total Income</p><h2 id="income-total">₹0.00</h2><span>Selected month</span></article><article class="summary-card expense-card"><p>Total Expenses</p><h2 id="expense-total">₹0.00</h2><span>Selected month</span></article><article class="summary-card balance-card"><p>Remaining Balance</p><h2 id="balance-total">₹0.00</h2><span>Budget − expenses</span></article></section>
+    <p id="budget-warning" class="budget-warning hidden" role="alert"></p>
+    <section class="panel category-panel"><h2>Spending by Category</h2><p class="muted">Where your money went in the selected month.</p><div id="category-list"></div><p id="category-empty" class="empty-message">No expenses recorded this month.</p></section>
+    <section class="content-grid"><section class="panel"><h2>Add a Transaction</h2><p class="muted">Record income or an expense below.</p>
+      <form id="transaction-form"><label for="transaction-type">Transaction type</label><select id="transaction-type"><option value="expense">Expense</option><option value="income">Income</option></select>
+        <label for="transaction-title">Description</label><input id="transaction-title" type="text" maxlength="80" placeholder="e.g. Groceries or Salary" required>
+        <div class="form-row"><div><label for="transaction-amount">Amount (₹)</label><input id="transaction-amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div><div><label for="transaction-category">Category</label><select id="transaction-category"></select></div></div>
+        <label for="transaction-date">Date</label><input id="transaction-date" type="date" required><button class="primary-button full-width" type="submit">+ Add Transaction</button><p id="form-message" class="form-message" role="status"></p>
+      </form></section>
+      <section class="panel transactions-panel"><div class="transactions-heading"><div><h2>Transaction History</h2><p class="muted">Income and expenses for the selected month.</p></div><select id="filter-type" aria-label="Filter transactions"><option value="all">All records</option><option value="income">Income only</option><option value="expense">Expenses only</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Details</th><th>Date</th><th>Amount</th><th>Action</th></tr></thead><tbody id="transaction-list"></tbody></table></div><p id="empty-message" class="empty-message">No transactions yet. Add your first record!</p><button id="clear-all" class="danger-button" type="button">Clear All Transactions</button>
+      </section></section>
+  </div>
+</main><script src="script.js"></script></body></html>
